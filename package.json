@@ -1,0 +1,46 @@
+{
+  "name": "thongtin",
+  "private": true,
+  "description": "Programming Blog",
+  "version": "0.1.0",
+  "author": "Steve Phan <vietappeu@gmail.com>",
+  "dependencies": {
+    "@fontsource/merriweather": "^4.5.14",
+    "@fontsource/montserrat": "^4.5.14",
+    "gatsby": "^4.9.0",
+    "gatsby-plugin-feed": "^4.25.0",
+    "gatsby-plugin-image": "^2.25.0",
+    "gatsby-plugin-manifest": "^4.25.0",
+    "gatsby-plugin-sharp": "^4.25.0",
+    "gatsby-remark-images": "^6.25.0",
+    "gatsby-remark-prismjs": "^6.25.0",
+    "gatsby-remark-responsive-iframe": "^5.25.0",
+    "gatsby-source-filesystem": "^4.25.0",
+    "gatsby-transformer-remark": "^5.25.0",
+    "gatsby-transformer-sharp": "^4.25.0",
+    "prismjs": "^1.29.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.1",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "prettier": "^2.8.4",
+    "typescript": "^4.9.5"
+  },
+  "homepage": "https://thongtin.de",
+  "keywords": [
+    "web development"
+  ],
+  "license": "0BSD",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "start": "gatsby develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "jest"
+  }
+}
