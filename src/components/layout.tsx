@@ -1,6 +1,8 @@
 import * as React from "react"
 import { Link } from "gatsby"
 
+import Footer from "./Footer/Footer"
+
 export interface ILayoutProps {
   location: {
     pathname: string
@@ -33,10 +35,7 @@ const Layout = ({ location, title, children }: ILayoutProps) => {
     <div className="global-wrapper" data-is-root-path={isRootPath}>
       <header className="global-header">{header}</header>
       <main>{children}</main>
-      <footer>
-        {`© ${new Date().getFullYear()} `}
-        <a href="https://thongtin.de/">Thongtin.de</a>
-      </footer>
+      <Footer />
     </div>
   )
 }

@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 50px;
+}
+
+.header {
+  padding-bottom: 20px;
+  padding-top: 40px;
+  width: 100%;
+  text-align: center;
+}
+
+.contact p {
+  margin-bottom: 8px;
+}
