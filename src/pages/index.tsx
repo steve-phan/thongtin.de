@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import Chip, { TLabel } from "../shared-UI/Chip/Chip"
 
 interface IBlogIndexProps {
   data: any
@@ -35,7 +36,7 @@ const BlogIndex = ({ data, location }: IBlogIndexProps) => {
       <ol style={{ listStyle: `none` }}>
         {posts.map((post: any) => {
           const title = post.frontmatter.title || post.fields.slug
-
+          console.log({ posts })
           return (
             <li key={post.fields.slug}>
               <article
@@ -44,11 +45,11 @@ const BlogIndex = ({ data, location }: IBlogIndexProps) => {
                 itemType="http://schema.org/Article"
               >
                 <header>
-                  <h2>
+                  <h3>
                     <Link to={post.fields.slug} itemProp="url">
                       <span itemProp="headline">{title}</span>
                     </Link>
-                  </h2>
+                  </h3>
                   <small>{post.frontmatter.date}</small>
                 </header>
                 <section>
@@ -57,6 +58,12 @@ const BlogIndex = ({ data, location }: IBlogIndexProps) => {
                       __html: post.frontmatter.description || post.excerpt,
                     }}
                     itemProp="description"
+                  />
+                  <Chip
+                    label={
+                      (post.frontmatter?.tag?.toLowerCase() as TLabel) ||
+                      "default"
+                    }
                   />
                 </section>
               </article>
@@ -94,6 +101,7 @@ export const pageQuery = graphql`
           date(formatString: "MMMM DD, YYYY")
           title
           description
+          tag
         }
       }
     }

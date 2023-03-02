@@ -2,6 +2,7 @@
 title: Building Scalable and Maintainable JavaScript Applications
 date: "2023-02-23"
 description: Best Practices for Building Scalable and Maintainable JavaScript Applications.
+tag: Javascript
 ---
 
 JavaScript is one of the most popular programming languages in the world and is used to build a wide range of applications, from small scripts to large-scale web applications. However, as applications grow in complexity and size, it can become challenging to maintain and scale the codebase. In this post, we will explore some best practices for building scalable and maintainable JavaScript applications.

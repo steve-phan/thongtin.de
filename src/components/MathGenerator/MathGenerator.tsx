@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import { generateProblems } from "./MathGenerator.helpers"
 import { PrintableMathProblems } from "./PrintableMathProblems"
 import "./MathGenerator.css"
+import Button from "../../shared-UI/Button/Button"
 
 export function MathGenerator() {
   const [numProblems, setNumProblems] = useState(10)
@@ -102,7 +103,7 @@ export function MathGenerator() {
               </label>
             </div>
           </div>
-          <button onClick={handleGenerate}>Generate Problems</button>
+          <Button onClick={handleGenerate}>Generate Problems</Button>
           <div className="problems">
             {problems && (
               <>

@@ -2,6 +2,7 @@
 title: Understand Varargs in Java
 date: "2023-02-27"
 description: Understand Varargs in Java
+tag: Java
 ---
 
 In Java, a method can accept a variable number of arguments using the varargs mechanism. Varargs (short for variable arguments) allows a method to accept zero or more arguments of a specified type. The syntax for declaring a varargs parameter is to use an ellipsis (...) after the type name in the method declaration.
