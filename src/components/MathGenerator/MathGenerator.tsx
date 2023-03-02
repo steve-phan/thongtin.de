@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 import { generateProblems } from "./MathGenerator.helpers"
 import { PrintableMathProblems } from "./PrintableMathProblems"
-import "./MathGerator.css"
+import "./MathGenerator.css"
 
 export function MathGenerator() {
   const [numProblems, setNumProblems] = useState(10)
