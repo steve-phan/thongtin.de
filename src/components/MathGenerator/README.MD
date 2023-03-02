@@ -14,3 +14,7 @@ Generate math problems for addition, subtraction, multiplication, and division.
 Select specific math types or generate a mix of all math types.
 Customize the number of problems generated.
 Print the generated math problems in a formatted and readable PDF document.
+
+### Try it out
+
+[Math generator](https://thongtin.de/math)
