@@ -2,6 +2,7 @@ import React, { useState } from "react"
 
 import { generateProblems } from "./MathGenerator.helpers"
 import { PrintableMathProblems } from "./PrintableMathProblems"
+import "./MathGerator.css"
 
 export function MathGenerator() {
   const [numProblems, setNumProblems] = useState(10)
@@ -43,8 +44,8 @@ export function MathGenerator() {
       {showPdf && problems ? (
         <PrintableMathProblems problems={problems} />
       ) : (
-        <div>
-          <div>
+        <div className="container">
+          <div className="numProblems">
             <label htmlFor="numProblems">Number of problems:</label>
             <input
               type="number"

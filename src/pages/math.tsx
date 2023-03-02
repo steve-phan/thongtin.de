@@ -4,7 +4,7 @@ import { MathGenerator } from "../components/MathGenerator/MathGenerator"
 const Math = () => {
   return (
     <div>
-      <h1>Kids Math Generator</h1>
+      <h1 style={{ textAlign: "center" }}>Kids Math Generator</h1>
       <MathGenerator />
     </div>
   )

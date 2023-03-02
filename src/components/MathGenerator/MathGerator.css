@@ -1,0 +1,53 @@
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+.numProblems {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+label {
+  display: block;
+  padding: 16px 0;
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+input[type="number"] {
+  font-size: 1.2rem;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 70px;
+  height: 48px;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+button {
+  background-color: #0077c2;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.problems {
+  margin-top: 20px;
+}
+
+.problems div {
+  margin-bottom: 10px;
+}
