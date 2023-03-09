@@ -39,7 +39,6 @@ export function MathGenerator() {
     setShowPdf(true)
   }
 
-  console.log({ problems })
   return (
     <>
       {showPdf && problems ? (

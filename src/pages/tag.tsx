@@ -6,26 +6,48 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Chip, { TLabel } from "../shared-UI/Chip/Chip"
 
-interface IBlogIndexProps {
+interface ITagProps {
   data: any
   location: {
     pathname: string
+    search: string
   }
 }
 
-const BlogIndex = ({ data, location }: IBlogIndexProps) => {
+/**
+ * Hardcoded for tag query.
+ * Bear in mind to update this mapping when adding new tag
+ */
+
+const tagQueryMapping = {
+  "?q=java": "java",
+  "?q=javascript": "javascript",
+  "?q=oop": "oop",
+} as const
+
+type TtagQueryKey = keyof typeof tagQueryMapping
+
+const Tag = ({ data, location }: ITagProps) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes as any
 
-  if (posts.length === 0) {
+  const [allTagPosts, setAllTagPosts] = React.useState(posts)
+
+  const query = location?.search as TtagQueryKey
+  const tag = tagQueryMapping[query]
+
+  React.useEffect(() => {
+    const tagPost = posts.filter(
+      (post: any) => post.frontmatter.tag.toLowerCase() === tag
+    )
+    setAllTagPosts(tagPost)
+  }, [tag])
+
+  if (allTagPosts.length === 0) {
     return (
       <Layout location={location} title={siteTitle}>
         <Bio />
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
+        <p>No blog posts found.</p>
       </Layout>
     )
   }
@@ -34,7 +56,7 @@ const BlogIndex = ({ data, location }: IBlogIndexProps) => {
     <Layout location={location} title={siteTitle}>
       <Bio />
       <ol style={{ listStyle: `none` }}>
-        {posts.map((post: any) => {
+        {allTagPosts.map((post: any) => {
           const title = post.frontmatter.title || post.fields.slug
           return (
             <li key={post.fields.slug}>
@@ -58,14 +80,12 @@ const BlogIndex = ({ data, location }: IBlogIndexProps) => {
                     }}
                     itemProp="description"
                   />
-                  <Link to={`/tag?q=${post.frontmatter?.tag?.toLowerCase()}`}>
-                    <Chip
-                      label={
-                        (post.frontmatter?.tag?.toLowerCase() as TLabel) ||
-                        "default"
-                      }
-                    />
-                  </Link>
+                  <Chip
+                    label={
+                      (post.frontmatter?.tag?.toLowerCase() as TLabel) ||
+                      "default"
+                    }
+                  />
                 </section>
               </article>
             </li>
@@ -76,7 +96,7 @@ const BlogIndex = ({ data, location }: IBlogIndexProps) => {
   )
 }
 
-export default BlogIndex
+export default Tag
 
 /**
  * Head export to define metadata for the page
