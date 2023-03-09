@@ -5,6 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Chip, { TLabel } from "../shared-UI/Chip/Chip"
+import { IPost } from "../types/post.type"
 
 interface ITagProps {
   data: any
@@ -29,7 +30,7 @@ type TtagQueryKey = keyof typeof tagQueryMapping
 
 const Tag = ({ data, location }: ITagProps) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes as any
+  const posts = data.allMarkdownRemark.nodes as IPost[]
 
   const [allTagPosts, setAllTagPosts] = React.useState(posts)
 

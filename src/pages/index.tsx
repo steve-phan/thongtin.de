@@ -5,6 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Chip, { TLabel } from "../shared-UI/Chip/Chip"
+import { IPost } from "../types/post.type"
 
 interface IBlogIndexProps {
   data: any
@@ -15,7 +16,7 @@ interface IBlogIndexProps {
 
 const BlogIndex = ({ data, location }: IBlogIndexProps) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes as any
+  const posts = data.allMarkdownRemark.nodes as IPost[]
 
   if (posts.length === 0) {
     return (
