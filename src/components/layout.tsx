@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Link } from "gatsby"
+import { css } from "@emotion/react"
 
 import Footer from "./Footer/Footer"
 
@@ -19,7 +20,13 @@ const Layout = ({ location, title, children }: ILayoutProps) => {
 
   if (isRootPath) {
     header = (
-      <h1 className="main-heading">
+      <h1
+        className="main-heading"
+        css={{
+          fontSize: 32,
+          lineHeight: 1.2,
+        }}
+      >
         <Link to="/">{title}</Link>
       </h1>
     )
