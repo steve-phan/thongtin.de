@@ -28,8 +28,10 @@ export const generateProblems = (
         problem = `${operand1} - ${operand2} = ___`
         break
       case "multiplication":
-        operand1 = Math.floor(Math.random() * 9) + 7
-        operand2 = Math.floor(Math.random() * 9) + 7
+        //Multiplication practice for second and third grade students, up to 10.
+
+        operand1 = Math.floor(Math.random() * 10)
+        operand2 = Math.floor(Math.random() * 10)
         problem = `${operand1} x ${operand2} = ___`
         break
       case "division":
