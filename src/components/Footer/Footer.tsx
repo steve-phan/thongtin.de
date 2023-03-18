@@ -20,6 +20,9 @@ const Footer = () => {
         <div>
           <Link to="/legal">Privacy & Terms</Link>
         </div>
+        <div>
+          <Link to="/math">Math kid generator</Link>
+        </div>
       </div>
     </footer>
   )

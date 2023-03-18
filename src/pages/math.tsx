@@ -2,6 +2,7 @@ import React from "react"
 
 import Layout from "../components/layout"
 import { MathGenerator } from "../components/MathGenerator/MathGenerator"
+import Seo from "../components/seo"
 
 const Math = () => {
   return (
@@ -18,3 +19,5 @@ const Math = () => {
 }
 
 export default Math
+
+export const Head = () => <Seo title="Kids Math Generator" />
