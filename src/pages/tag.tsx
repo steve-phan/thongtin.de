@@ -24,6 +24,7 @@ const tagQueryMapping = {
   "?q=java": "java",
   "?q=javascript": "javascript",
   "?q=oop": "oop",
+  "?q=rxjs": "rxjs",
 } as const
 
 type TtagQueryKey = keyof typeof tagQueryMapping
