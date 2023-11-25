@@ -47,15 +47,23 @@ const styles = StyleSheet.create({
   },
 })
 
-export function PrintableMathProblems({ problems }: { problems: string[] }) {
+export function PrintableMathProblems({
+  problems,
+  kidName,
+}: {
+  problems: string[]
+  kidName?: string
+}) {
   return (
     <PDFViewer style={{ width: "100%", height: "100vh" }}>
       <Document>
         <Page style={styles.page}>
+        <View><Text> {(new Date()).toDateString() } - {kidName} </Text></View>
           {problems.map((problem, index) => {
             const [operand1, operator, operand2] = problem.split(" ")
             return (
               <View key={index} style={styles.problemContainer}>
+     
                 <View style={styles.operandsContainer}>
                   <Text style={styles.operand}>{operand1}</Text>
                   <Text style={styles.operator}>{`${operator} `}</Text>

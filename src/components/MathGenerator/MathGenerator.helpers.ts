@@ -1,50 +1,72 @@
 export const generateProblems = (
   numProblems: number,
-  selectedMathTypes: string[]
+  selectedMathTypes: string[],
+  kidGrade: number
 ): string[] => {
-  const problems: string[] = []
+  const problems: string[] = [];
   const mathTypes =
     selectedMathTypes.length > 0
       ? selectedMathTypes
-      : ["addition", "subtraction", "multiplication", "division"]
+      : ["addition", "subtraction", "multiplication", "division"];
+
+  const isSimpleProblem = (operand1: number, operand2: number, mathType: string): boolean => {
+    const simpleNumbers = [0, 1, 2];
+    return (
+      (mathType === "multiplication" && (simpleNumbers.includes(operand1) || simpleNumbers.includes(operand2))) ||
+      (mathType === "addition" && (operand1 < 10 || operand2 < 10)) ||
+      (mathType === "subtraction" && (simpleNumbers.includes(operand1) || simpleNumbers.includes(operand2))) ||
+      (mathType === "division" && (simpleNumbers.includes(operand1) || simpleNumbers.includes(operand2)))
+    );
+  };
+
+  const getOperandRange = (grade: number): [number, number] => {
+    if (grade >= 5) {
+      return [20, 1000]; // For grade 5 and above
+    } else if (grade >= 3) {
+      return [10, 100]; // For grade 3 and 4
+    } else {
+      return [0, 20]; // For grade below 3
+    }
+  };
+
+  const [minOperand, maxOperand] = getOperandRange(kidGrade);
 
   for (let i = 0; i < numProblems; i++) {
-    let problem = ""
-    let operand1 = 0
-    let operand2 = 0
+    let problem = "";
+    let operand1 = 0;
+    let operand2 = 0;
 
-    const mathType = mathTypes[Math.floor(Math.random() * mathTypes.length)]
+    let mathType = mathTypes[Math.floor(Math.random() * mathTypes.length)];
 
-    switch (mathType) {
-      case "addition":
-        operand1 = Math.floor(Math.random() * 141) + 60
-        operand2 = Math.floor(Math.random() * 141) + 60
-        problem = `${operand1} + ${operand2} = ___`
-        break
-      case "subtraction":
-        operand1 = Math.floor(Math.random() * 141) + 60
-        operand2 = Math.floor(Math.random() * 59) + 1
-        operand2 = Math.min(operand1 - 1, operand2)
-        problem = `${operand1} - ${operand2} = ___`
-        break
-      case "multiplication":
-        //Multiplication practice for second and third grade students, up to 10.
+    do {
+      operand1 = Math.floor(Math.random() * (maxOperand - minOperand + 1)) + minOperand;
+      operand2 = Math.floor(Math.random() * (maxOperand - minOperand + 1)) + minOperand;
 
-        operand1 = Math.floor(Math.random() * 10)
-        operand2 = Math.floor(Math.random() * 10)
-        problem = `${operand1} x ${operand2} = ___`
-        break
-      case "division":
-        operand2 = Math.floor(Math.random() * 9) + 1
-        operand1 = operand2 * Math.floor(Math.random() * 13) + 7
-        problem = `${operand1} / ${operand2} = ___`
-        break
-      default:
-        break
-    }
+      switch (mathType) {
+        case "addition":
+          problem = `${operand1} + ${operand2} = ___`;
+          break;
+        case "subtraction":
+          operand2 = Math.min(operand1 - 1, operand2);
+          problem = `${operand1} - ${operand2} = ___`;
+          break;
+        case "multiplication":
+          problem = `${operand1} x ${operand2} = ___`;
+          break;
+        case "division":
+          // Avoid division by zero
+          if (operand2 !== 0) {
+            operand1 = operand2 * Math.floor(Math.random() * 13) + 7;
+            problem = `${operand1} : ${operand2} = ___`;
+          }
+          break;
+        default:
+          break;
+      }
+    } while (isSimpleProblem(operand1, operand2, mathType));
 
-    problems.push(problem)
+    problems.push(problem);
   }
 
-  return problems
-}
+  return problems;
+};

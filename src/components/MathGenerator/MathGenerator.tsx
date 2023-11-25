@@ -13,6 +13,8 @@ export function MathGenerator() {
   ])
 
   const [problems, setProblems] = useState<string[] | null>(null)
+  const [kidName, setKidName] = useState("")
+  const [kidGrade, setKidGrade] = useState(3)
   const [showPdf, setShowPdf] = useState(false)
 
   const handleNumProblemsChange = (
@@ -34,7 +36,7 @@ export function MathGenerator() {
   }
 
   const handleGenerate = () => {
-    const generatedProblems = generateProblems(numProblems, selectedMathTypes)
+    const generatedProblems = generateProblems(numProblems, selectedMathTypes, kidGrade)
     setProblems(generatedProblems)
     setShowPdf(true)
   }
@@ -42,10 +44,33 @@ export function MathGenerator() {
   return (
     <>
       {showPdf && problems ? (
-        <PrintableMathProblems problems={problems} />
+        <PrintableMathProblems problems={problems} kidName={kidName} />
       ) : (
         <div className="container">
-          <div className="numProblems">
+          <div className="row">
+            <label htmlFor="kidName">Name of Kids</label>
+            <input
+              id="kidName"
+              type="text"
+              onChange={event => setKidName(event.target.value)}
+            />
+          </div>
+          <div className="row">
+            <label htmlFor="grade">Grade of Kid</label>
+            <select
+                style={{padding : '6px'}} 
+              value={kidGrade}
+              onChange={event => setKidGrade(Number(event.target.value))}
+            >
+              {[3, 4, 5, 6].map((grade, index) => (
+                <option key={grade + index}
+        
+
+                > {grade} </option>
+              ))}
+            </select>
+          </div>
+          <div className="row">
             <label htmlFor="numProblems">Number of problems:</label>
             <input
               type="number"
