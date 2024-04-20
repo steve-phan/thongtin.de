@@ -7,7 +7,7 @@ type Props = {
   type?: "button" | "submit" | "reset"
   disabled?: boolean
   variant?: "primary" | "secondary"
-  active?: boolean // New prop for indicating if the button is active
+  active?: boolean
 }
 
 const buttonStyles = css`
@@ -44,10 +44,14 @@ const Button = ({
   type = "button",
   disabled = false,
   variant = "primary",
-  active = false, // Default value for active prop is false
+  active,
 }: Props) => {
+  console.log({
+    typeof: typeof active,
+  })
   const variantStyles = variant === "primary" ? primaryStyles : secondaryStyles
-  const activeVariantStyles = active ? activeStyles : inActiveStyles
+  const activeVariantStyles =
+    typeof active === "boolean" ? (active ? activeStyles : inActiveStyles) : {}
 
   return (
     <button

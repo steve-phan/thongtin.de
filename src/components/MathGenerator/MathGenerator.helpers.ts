@@ -40,7 +40,7 @@ export const generateProblems = (
       case "division":
         operand2 = Math.floor(Math.random() * 30) + 4
         operand1 = operand2 * (Math.floor(Math.random() * 30) + 7) * extraNumber
-        problem = `${operand1} / ${operand2} = ___`
+        problem = `${operand1} : ${operand2} = ___`
         break
       default:
         break
