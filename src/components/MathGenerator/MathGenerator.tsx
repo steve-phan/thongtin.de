@@ -7,6 +7,7 @@ import Button from "../../shared-UI/Button/Button"
 
 export function MathGenerator() {
   const [numProblems, setNumProblems] = useState(10)
+  const [grade, setGrade] = useState<4 | 5>(4)
   const [selectedMathTypes, setSelectedMathTypes] = useState([
     "addition",
     "subtraction",
@@ -34,9 +35,17 @@ export function MathGenerator() {
   }
 
   const handleGenerate = () => {
-    const generatedProblems = generateProblems(numProblems, selectedMathTypes)
+    const generatedProblems = generateProblems(
+      numProblems,
+      selectedMathTypes,
+      grade
+    )
     setProblems(generatedProblems)
     setShowPdf(true)
+  }
+
+  const handleGradeChange = (value: 4 | 5) => {
+    setGrade(value)
   }
 
   return (
@@ -54,6 +63,17 @@ export function MathGenerator() {
               value={numProblems}
               onChange={handleNumProblemsChange}
             />
+          </div>
+          <div className="grade">
+            <label>For grade:</label>
+            <div>
+              <Button onClick={() => handleGradeChange(4)} active={grade === 4}>
+                Grade 4
+              </Button>
+              <Button onClick={() => handleGradeChange(5)} active={grade === 5}>
+                Grade 5
+              </Button>
+            </div>
           </div>
           <div>
             <label>Math types:</label>

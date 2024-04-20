@@ -7,6 +7,7 @@ type Props = {
   type?: "button" | "submit" | "reset"
   disabled?: boolean
   variant?: "primary" | "secondary"
+  active?: boolean // New prop for indicating if the button is active
 }
 
 const buttonStyles = css`
@@ -28,21 +29,32 @@ const secondaryStyles = css`
   border: 1px solid #007bff;
 `
 
+const activeStyles = css`
+  background-color: #ec0867;
+  color: #fff;
+`
+const inActiveStyles = css`
+  background-color: #d1d1d1;
+  color: #666565;
+`
+
 const Button = ({
   children,
   onClick,
   type = "button",
   disabled = false,
   variant = "primary",
+  active = false, // Default value for active prop is false
 }: Props) => {
   const variantStyles = variant === "primary" ? primaryStyles : secondaryStyles
+  const activeVariantStyles = active ? activeStyles : inActiveStyles
 
   return (
     <button
       onClick={onClick}
       type={type}
       disabled={disabled}
-      css={[buttonStyles, variantStyles]}
+      css={[buttonStyles, variantStyles, activeVariantStyles]}
     >
       {children}
     </button>
