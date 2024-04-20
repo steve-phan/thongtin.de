@@ -12,14 +12,24 @@ const styles = StyleSheet.create({
   page: {
     backgroundColor: "#ffffff",
     padding: 20,
+    flexDirection: "row", // Change the direction to row
+    flexWrap: "wrap", // Allow wrapping
+    justifyContent: "space-between",
   },
   problemContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 10,
-    width: "50%",
+    width: "45%", // Set width to 48% for two columns
   },
+
+  header: {
+    width: "100%",
+    marginBottom: 20,
+    textAlign: "center",
+  },
+
   operandsContainer: {
     flexDirection: "row",
     alignItems: "center",
@@ -47,11 +57,18 @@ const styles = StyleSheet.create({
   },
 })
 
-export function PrintableMathProblems({ problems }: { problems: string[] }) {
+export function PrintableMathProblems({
+  problems,
+  studentName,
+}: {
+  problems: string[]
+  studentName?: string
+}) {
   return (
     <PDFViewer style={{ width: "100%", height: "100vh" }}>
       <Document>
         <Page style={styles.page}>
+          <Text style={styles.header}>{`Name of student: ${studentName}`}</Text>
           {problems.map((problem, index) => {
             const [operand1, operator, operand2] = problem.split(" ")
             return (
